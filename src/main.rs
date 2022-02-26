@@ -17,7 +17,7 @@ pub mod equation {
 
     pub fn generate_number() -> i32 {
         let mut rng = rand::thread_rng();
-        let n1 = rng.gen_range(1..10);
+        let n1 = rng.gen_range(2..10);
         return n1;
     }
 
