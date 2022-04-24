@@ -1,4 +1,4 @@
-use std::io::{self, Write};
+
 
 pub mod util {
     use std::io; 
@@ -33,12 +33,10 @@ fn main() -> () {
         println!("What is {} times {}", s1, s2);
 
         let n3 = n1*n2;
-        let s3 = n3.to_string();
+        // let s3 = n3.to_string();
         // println!("s3 {}", s3);
 
         let x = util::read();
-        let stdout = io::stdout();
-        let mut handle = stdout.lock();
 
         match x {
             Ok(x) => {
@@ -47,7 +45,7 @@ fn main() -> () {
                 match m {
                     Ok(m) => {
                         println!("You entered the number {}", m);
-                        if (m == n3) {
+                        if m == n3 {
                             println!("correct");
                         } else {
                             println!("wrong");
@@ -59,7 +57,7 @@ fn main() -> () {
                 }
             }
             Err(e) => {
-                handle.write_all(b"user error, try again");
+                println!("user error, try again, error was");
             }
         };
     }
