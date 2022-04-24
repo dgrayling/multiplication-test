@@ -20,17 +20,9 @@ pub mod equation {
         let n1 = rng.gen_range(2..10);
         return n1;
     }
-
-    pub fn generate_equation() -> i32 {
-        let mut rng = rand::thread_rng();
-        let n1 = rng.gen::<i32>();
-        let n2 = rng.gen::<i32>();
-        let n3 = n1 * n2;
-        return n1;
-    }
 }
 
-fn main() -> io::Result<()> {
+fn main() -> () {
 
     loop {        
         // let number = equation::generate_equation();
@@ -48,7 +40,7 @@ fn main() -> io::Result<()> {
         let stdout = io::stdout();
         let mut handle = stdout.lock();
 
-        let y = match x {
+        match x {
             Ok(x) => {
                 let l = x.parse::<String>().unwrap();
                 let m = l.parse::<i32>();
@@ -67,10 +59,8 @@ fn main() -> io::Result<()> {
                 }
             }
             Err(e) => {
-                handle.write_all(b"user error, try again")?;
+                handle.write_all(b"user error, try again");
             }
         };
     }
-
-    Ok(())
 }
