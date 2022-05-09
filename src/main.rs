@@ -25,7 +25,7 @@ pub mod equation {
 struct Puzzle {
     s1: String,
     s2: String,
-    n3: i32
+    solution: i32
 }
 
 fn generate_puzzle() -> Puzzle {
@@ -33,9 +33,26 @@ fn generate_puzzle() -> Puzzle {
     let n2 = equation::generate_number();
     let s1 = n1.to_string();
     let s2 = n2.to_string();
-    let n3 = n1*n2;
+    let solution = n1*n2;
     return Puzzle {
-        s1, s2, n3
+        s1, s2, solution
+    }
+}
+
+fn match_answer(x : String, solution: i32) -> () {
+    let m = x.parse::<String>().unwrap().parse::<i32>();
+    match m {
+        Ok(m) => {
+            println!("You entered the number {}", m);
+            if m == solution {
+                println!("correct");
+            } else {
+                println!("wrong");
+            }
+        }
+        Err(e) => {
+            println!("{}", e);
+        }
     }
 }
 
@@ -48,22 +65,11 @@ fn main() -> () {
 
         let x = util::read();
 
+        // match_read(x);
+
         match x {
             Ok(x) => {
-                let m = x.parse::<String>().unwrap().parse::<i32>();
-                match m {
-                    Ok(m) => {
-                        println!("You entered the number {}", m);
-                        if m == puzzle.n3 {
-                            println!("correct");
-                        } else {
-                            println!("wrong");
-                        }
-                    }
-                    Err(e) => {
-                        println!("{}", e);
-                    }
-                }
+                match_answer(x, puzzle.solution)
             }
             Err(e) => {
                 println!("user error, try again, error was");
